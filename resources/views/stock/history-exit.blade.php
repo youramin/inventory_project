@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Stock History Exit')
+@section('title', 'Riwayat Stok Keluar')
 
 @section('contents')
 <div class="container-fluid">
@@ -8,11 +8,11 @@
     <form method="GET" action="{{ route('stock.history.exit') }}">
         <div class="row mb-3">
             <div class="col-md-4">
-                <label for="start_date">Start Date:</label>
+                <label for="start_date">Waktu Awal:</label>
                 <input type="date" id="start_date" name="start_date" class="form-control" value="{{ request('start_date') }}">
             </div>
             <div class="col-md-4">
-                <label for="end_date">End Date:</label>
+                <label for="end_date">Waktu Akhir:</label>
                 <input type="date" id="end_date" name="end_date" class="form-control" value="{{ request('end_date') }}">
             </div>
             <div class="col-md-4 d-flex align-items-end">
@@ -32,13 +32,13 @@
             <span class="icon text-white-50">
                 <i class="fas fa-file-pdf" aria-hidden="true"></i>
             </span>
-            <span class="text">Download PDF</span>
+            <span class="text">Unduh PDF</span>
         </a>
         <a href="{{route('stock.history.exit.excel', ['start_date' => request('start_date'), 'end_date' => request('end_date')]) }}" class="btn btn-success btn-icon-split">
             <span class="icon text-white-50">
                 <i class="fas fa-file-excel" aria-hidden="true"></i>
             </span>
-            <span class="text">Download Excel</span>
+            <span class="text">Unduh Excel</span>
         </a>
     </div>
 
@@ -51,12 +51,12 @@
                     <thead>
                         <tr>
                             <th>No.</th>
-                            <th>Date</th>
-                            <th>Product</th>
-                            <th>Category</th>
-                            <th>Quantity</th>
-                            <th>Notes</th>
-                            <th>User</th>
+                            <th>Waktu</th>
+                            <th>Produk</th>
+                            <th>Kategori</th>
+                            <th>Jumlah Stok</th>
+                            <th>Keterangan</th>
+                            <th>Pengguna Input</th>
                         </tr>
                     </thead>
                     <tbody>

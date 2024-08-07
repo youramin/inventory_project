@@ -4,15 +4,15 @@
 
 @section('contents')
     <div class="container">
-        <h1 class="mb-0">Stock Entry</h1>
+        <h1 class="mb-0">Stok Masuk</h1>
         <hr />
 
         <form action="{{ route('stock.storeEntry') }}" method="POST" id="stockEntryForm">
             @csrf
             <div class="mb-3">
-                <label class="form-label">Category</label>
+                <label class="form-label">Kategori</label>
                 <select name="category_id" class="form-control" id="categorySelect">
-                    <option value="">Select Category</option>
+                    <option value="">Pilih Kategori</option>
                     @foreach($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach
@@ -22,9 +22,9 @@
                 @enderror
             </div>
             <div class="mb-3">
-                <label class="form-label">Product</label>
+                <label class="form-label">Produk</label>
                 <select name="product_id" class="form-control" id="productSelect">
-                    <option value="">Select Product</option>
+                    <option value="">Pilih Produk</option>
                     <!-- Options will be loaded dynamically -->
                 </select>
                 @error('product_id')
@@ -32,9 +32,9 @@
                 @enderror
             </div>
             <div class="mb-3">
-                <label class="form-label">Supplier</label>
+                <label class="form-label">Pemasok</label>
                 <select name="supplier_id" class="form-control">
-                    <option value="">Select Supplier</option>
+                    <option value="">Pilih Pemasok</option>
                     @foreach($suppliers as $supplier)
                         <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
                     @endforeach
@@ -44,21 +44,21 @@
                 @enderror
             </div>
             <div class="mb-3">
-                <label class="form-label">Quantity</label>
-                <input type="number" name="quantity" class="form-control" placeholder="Quantity" value="{{ old('quantity') }}">
+                <label class="form-label">Jumlah Stok Masuk</label>
+                <input type="number" name="quantity" class="form-control" placeholder="Jumlah Stok" value="{{ old('quantity') }}">
                 @error('quantity')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
             <div class="mb-3">
-                <label class="form-label">Entry Date</label>
+                <label class="form-label">Waktu Masuk</label>
                 <input type="date" name="entry_date" class="form-control" value="{{ old('entry_date') }}">
                 @error('entry_date')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
             <div class="mb-3">
-                <label class="form-label">Description</label>
+                <label class="form-label">Keterangan</label>
                 <textarea class="form-control" name="notes" placeholder="Description">{{ old('notes') }}</textarea>
                 @error('notes')
                     <div class="text-danger">{{ $message }}</div>
@@ -68,7 +68,7 @@
                 <span class="icon text-white-50">
                     <i class="fa fa-plus-circle" aria-hidden="true"></i>
                 </span>
-                <span class="text">Submit</span>
+                <span class="text">Tambah</span>
             </button>
         </form>
     </div>
@@ -105,13 +105,14 @@
                 event.preventDefault();
 
                 Swal.fire({
-                    title: 'Are you sure?',
-                    text: "Do you want to save this stock entry?",
+                    title: 'Apa Anda Yakin?',
+                    text: "Menambahkan data ke riwayat stok masuk?",
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, save it!'
+                    confirmButtonText: 'Ya, Simpan',
+                    cancelButtonText : 'Batal'
                 }).then((result) => {
                     if (result.isConfirmed) {
                         form.submit();
@@ -124,7 +125,7 @@
     <script>
         Swal.fire({
             icon: 'success',
-            title: 'Success',
+            title: 'Sukses',
             text: '{{ Session::get('success') }}',
             showConfirmButton: false,
             timer: 2000

@@ -1,27 +1,27 @@
 @extends('layouts.app')
 
-@section('title', 'Stock Summary')
+@section('title', 'Ringkasan Stok')
 
 @section('contents')
 
-    <p class="mb-4">This table provides an overview of stock entries, exits, and current stock levels for each product.</p>
+    <p class="mb-4">Tabel ini memberikan gambaran mengenai pemasukan stok, pengeluaran stok, dan tingkat stok saat ini untuk setiap produk.</p>
 
     <!-- Stock Summary Table -->
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Stock Summary</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Rincian Stok Keseluruhan</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Product</th>
-                            <th>Category</th>
-                            <th>Stock Entries</th>
-                            <th>Stock Exits</th>
-                            <th>Current Stock</th>
-                            <th>Last Stock Update</th>
+                            <th>Produk</th>
+                            <th>Kategori</th>
+                            <th>Stok Masuk</th>
+                            <th>Stok Keluar</th>
+                            <th>Sisa Stok</th>
+                            <th>Terakhir di Perbarui</th>
                         </tr>
                     </thead>
                     <tbody>
