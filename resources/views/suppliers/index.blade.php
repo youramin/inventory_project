@@ -1,41 +1,35 @@
 @extends('layouts.app')
 
-@section('title', 'Suppliers')
+@section('title', 'Daftar Pemasok')
 
 @section('contents')
     <hr />
-    @if(Session::has('success'))
-        <div class="alert alert-success" role="alert">
-            {{ Session::get('success') }}
-        </div>
-    @endif
 
     <div class="mb-3">
         <a href="{{ route('suppliers.create') }}" class="btn btn-success btn-icon-split">
             <span class="icon text-white-50">
                 <i class="fa fa-plus-circle" aria-hidden="true"></i>
             </span>
-            <span class="text">Add Supplier</span>
+            <span class="text">Tambah Pemasok</span>
         </a>
     </div>
 
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">List Supplier</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Tabel Pemasok</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead class="table-primary">
                         <tr>
-                            <th>#</th>
-                            <th>Name</th>
-                            <th>Contact Person</th>
-                            <th>Phone</th>
+                            <th>No.</th>
+                            <th>Nama Pemasok</th>
+                            <th>No. Telp</th>
                             <th>Email</th>
-                            <th>Address</th>
+                            <th>Alamat</th>
                             @if(Auth::check() && Auth::user()->role === 'admin')
-                            <th>Actions</th>
+                            <th>Aksi</th>
                             @endif
                         </tr>
                     </thead>
@@ -44,7 +38,6 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $supplier->name }}</td>
-                                <td>{{ $supplier->contact_person }}</td>
                                 <td>{{ $supplier->phone }}</td>
                                 <td>{{ $supplier->email }}</td>
                                 <td>{{ $supplier->address }}</td>
@@ -60,7 +53,7 @@
                                         <span class="icon text-white-50">
                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                         </span>
-                                        <span class="text">Delete</span>
+                                        <span class="text">Hapus</span>
                                     </a>
                                     
                                     <form id="delete-form-{{$supplier->id }}" action="{{ route('suppliers.destroy', $supplier ) }}" method="POST" style="display: none;">
@@ -72,7 +65,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td class="text-center" colspan="7">No suppliers found.</td>
+                                <td class="text-center" colspan="7">Pemasok tidak ditemukan</td>
                             </tr>
                         @endforelse
                     </tbody>
@@ -86,13 +79,14 @@
     <script>
         function confirmDelete(supplierId) {
             Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
+                title: 'Apa Anda Yakin Hapus?',
+                text: "Pemasok terhapus tidak dapat kembali",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
                 cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
+                confirmButtonText: 'Ya, Hapus',
+                cancelButtonText : 'Batal'
             }).then((result) => {
                 if (result.isConfirmed) {
                     document.querySelector(`form[action*="${supplierId}"]`).submit();
@@ -104,7 +98,7 @@
     <script>
         Swal.fire({
             icon: 'success',
-            title: 'Success',
+            title: 'Sukses',
             text: '{{ Session::get('success') }}',
             showConfirmButton: false,
             timer: 2000

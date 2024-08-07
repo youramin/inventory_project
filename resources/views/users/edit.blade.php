@@ -4,14 +4,14 @@
 
 @section('contents')
 <div class="container">
-    <h1>Edit User</h1>
+    <h1>Edit Akun</h1>
 <hr/>
     <form action="{{ route('users.update', $user) }}" method="POST">
         @csrf
         @method('PUT')
 
         <div class="form-group">
-            <label for="name">Name</label>
+            <label for="name">Nama</label>
             <input type="text" class="form-control" id="name" name="name" value="{{ old('name', $user->name) }}" required>
             @error('name')
                 <div class="text-danger">{{ $message }}</div>
@@ -27,7 +27,7 @@
         </div>
 
         <div class="form-group">
-            <label for="role">Role</label>
+            <label for="role">Peran</label>
             <select class="form-control" id="role" name="role" required>
                 <option value="admin" {{ old('role', $user->role) == 'admin' ? 'selected' : '' }}>Admin</option>
                 <option value="user" {{ old('role', $user->role) == 'user' ? 'selected' : '' }}>User</option>
@@ -37,7 +37,7 @@
             @enderror
         </div>
 
-        <p style="color: red">Please fill if you want to change password!</p>
+        <p style="color: red">Isi Jika Anda ingin Mengganti Password!</p>
         <div class="form-group">
             <label for="password">Password</label>
             <input type="password" class="form-control" id="password" name="password">
@@ -47,7 +47,7 @@
         </div>
 
         <div class="form-group">
-            <label for="password_confirmation">Confirm Password</label>
+            <label for="password_confirmation">Konfirmasi Password</label>
             <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
         </div>
 
@@ -56,13 +56,13 @@
                 <span class="icon text-white-50">
                     <i class="fa fa-check-circle" aria-hidden="true"></i>
                 </span>
-                <span class="text">Update User</span>
+                <span class="text">Perbarui Akun</span>
             </button>
             <a href="{{ route('users.index') }}" class="btn btn-danger btn-icon-split mb-2">
                 <span class="icon text-white-50">
                     <i class="fa fa-times-circle" aria-hidden="true"></i>
                 </span>
-                <span class="text">Cancel</span>
+                <span class="text">Batal</span>
             </a>
         </div>
         
@@ -72,7 +72,7 @@
     <script>
         Swal.fire({
             icon: 'success',
-            title: 'Success',
+            title: 'Sukses',
             text: '{{ Session::get('success') }}',
             showConfirmButton: false,
             timer: 2000

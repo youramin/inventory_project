@@ -28,7 +28,6 @@ class SupplierController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'contact_person' => 'required|string|max:255',
             'phone' => 'required|string|max:15',
             'email' => 'nullable|email',
             'address' => 'nullable|string',
@@ -54,7 +53,6 @@ class SupplierController extends Controller
         if (Auth::check() && Auth::user()->role === 'admin') {
             $request->validate([
                 'name' => 'required|string|max:255',
-                'contact_person' => 'required|string|max:255',
                 'phone' => 'required|string|max:15',
                 'email' => 'nullable|email',
                 'address' => 'nullable|string',

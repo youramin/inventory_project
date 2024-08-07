@@ -1,15 +1,10 @@
 @extends('layouts.app')
 
-@section('title', 'Users')
+@section('title', 'Pengguna')
 
 @section('contents')
 <div class="container-fluid">
     <hr />
-    @if(session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
 
     <!-- Button to create a new user -->
     <div class="mb-3">
@@ -17,24 +12,24 @@
             <span class="icon text-white-50">
                 <i class="fa fa-user-plus" aria-hidden="true"></i>
             </span>
-            <span class="text">Create User</span>
+            <span class="text">Buat Akun</span>
         </a>
     </div>
     
 
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">User Management</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Manajemen Pengguna</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" width="100%" cellspacing="0">
                     <thead>
                         <tr>
-                            <th>Name</th>
+                            <th>Nama</th>
                             <th>Email</th>
-                            <th>Role</th>
-                            <th>Actions</th>
+                            <th>Peran Pengguna</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -54,7 +49,7 @@
                                         <span class="icon text-white-50">
                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                         </span>
-                                        <span class="text">Delete</span>
+                                        <span class="text">Hapus</span>
                                     </a>
                                     
                                     <form id="delete-form-{{ $user->id }}" action="{{ route('users.destroy', $user) }}" method="POST" style="display: none;">
@@ -75,13 +70,14 @@
 <script>
     function confirmDelete(id) {
     Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
+        title: 'Anda Yakin?',
+        text: "Akun yang dihapus tidak dapat kembali",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonText: 'Ya, hapus',
+        cancelButtonText : 'Batal'
     }).then((result) => {
         if (result.isConfirmed) {
             document.getElementById('delete-form-' + id).submit();

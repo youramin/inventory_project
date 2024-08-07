@@ -1,40 +1,35 @@
 @extends('layouts.app')
 
-@section('title', 'Home Product')
+@section('title', 'Daftar Produk')
 
 @section('contents')
     <hr />
-    @if(Session::has('success'))
-        <div class="alert alert-success" role="alert">
-            {{ Session::get('success') }}
-        </div>
-    @endif
 
     <div class="mb-3">
         <a href="{{ route('products.create') }}" class="btn btn-success btn-icon-split">
             <span class="icon text-white-50">
                 <i class="fa fa-plus-circle" aria-hidden="true"></i>
             </span>
-            <span class="text">Add Product</span>
+            <span class="text">Tambah Produk</span>
         </a>
     </div>
 
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Products</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Tabel Produk</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" width="100%" cellspacing="0">
                     <thead class="table-primary">
                         <tr>
-                            <th>#</th>
-                            <th>Title</th>
-                            <th>Price</th>
-                            <th>Product Code</th>
-                            <th>Description</th>
-                            <th>Category</th>
-                            <th>Action</th>
+                            <th>No.</th>
+                            <th>Nama Produk</th>
+                            <th>Kode Produk</th>
+                            <th>Harga Satuan</th>
+                            <th>Katerangan</th>
+                            <th>Kategori</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,8 +37,8 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $product->title }}</td>
-                                <td>{{ $product->price }}</td>
                                 <td>{{ $product->product_code }}</td>
+                                <td>{{ $product->price }}</td>
                                 <td>{{ $product->description }}</td>
                                 <td>{{ $product->category->name }}</td> <!-- Assuming 'name' is the attribute in Category model -->
                                 <td>
@@ -58,7 +53,7 @@
                                         <span class="icon text-white-50">
                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                         </span>
-                                        <span class="text">Delete</span>
+                                        <span class="text">Hapus</span>
                                     </a>
                                     
                                     <form id="delete-form-{{ $product->id }}" action="{{ route('products.destroy', $product ) }}" method="POST" style="display: none;">
@@ -70,7 +65,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td class="text-center" colspan="7">No products found.</td>
+                                <td class="text-center" colspan="7">Produk Tidak di Temukan</td>
                             </tr>
                         @endforelse
                     </tbody>
@@ -84,13 +79,14 @@
 <script>
     function confirmDelete(productId) {
         Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
+            title: 'Apa Anda yakin Hapus?',
+            text: "Produk terhapus tidak dapat dikembalikan",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
+            confirmButtonText: 'Ya, Hapus',
+            cancelButtonText : 'Batal'
         }).then((result) => {
             if (result.isConfirmed) {
                 document.getElementById('delete-form-' + productId).submit();
@@ -103,7 +99,7 @@
 <script>
     Swal.fire({
         icon: 'success',
-        title: 'Success',
+        title: 'Sukses',
         text: '{{ Session::get('success') }}',
         showConfirmButton: false,
         timer: 2000

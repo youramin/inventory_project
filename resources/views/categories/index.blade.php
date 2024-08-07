@@ -1,38 +1,33 @@
 @extends('layouts.app')
 
-@section('title', 'List Categories')
+@section('title', 'Daftar Kategori')
 
 @section('contents')
 <div class="container-fluid">
     <hr />
-    @if(Session::has('success'))
-        <div class="alert alert-success" role="alert">
-            {{ Session::get('success') }}
-        </div>
-    @endif
 
     <div class="mb-3">
         <a href="{{ route('categories.create') }}" class="btn btn-success btn-icon-split">
             <span class="icon text-white-50">
                 <i class="fa fa-plus-circle" aria-hidden="true"></i>
             </span>
-            <span class="text">Add Category</span>
+            <span class="text">Tambah Kategori</span>
         </a>
     </div>
 
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Categories</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Kategori</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered" width="100%" cellspacing="0">
                     <thead class="table-primary">
                         <tr>
-                            <th>#</th>
-                            <th>Category Code</th>
-                            <th>Name</th>
-                            <th>Action</th>
+                            <th>No.</th>
+                            <th>Nama Kategori</th>
+                            <th>Kode Kategori</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -52,7 +47,7 @@
                                             <span class="icon text-white-50">
                                                 <i class="fa fa-trash" aria-hidden="true"></i>
                                             </span>
-                                            <span class="text">Delete</span>
+                                            <span class="text">Hapus</span>
                                         </a>
                                         
                                         <form id="delete-form-{{ $category->id  }}" action="{{ route('categories.destroy', $category) }}" method="POST" style="display: none;">
@@ -63,7 +58,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td class="text-center" colspan="3">No categories found.</td>
+                                <td class="text-center" colspan="3">Tidak ada daftar kategori</td>
                             </tr>
                         @endforelse
                     </tbody>
@@ -77,13 +72,14 @@
 <script>
     function confirmDelete(categoryId) {
         Swal.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
+            title: 'Apa anda yakin?',
+            text: "Menghapus Kategori Tidak Dapat Kembali",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, delete it!'
+            confirmButtonText: 'Ya, Hapus',
+            cancelButtonText : 'Batal'
         }).then((result) => {
             if (result.isConfirmed) {
                 document.getElementById('delete-form-' + categoryId).submit();
@@ -96,7 +92,7 @@
 <script>
     Swal.fire({
         icon: 'success',
-        title: 'Success',
+        title: 'Sukses',
         text: '{{ Session::get('success') }}',
         showConfirmButton: false,
         timer: 2000
