@@ -5,7 +5,7 @@
   <div class="sidebar-brand-icon">
     <i class="fas fa-boxes"></i>
   </div>
-  <div class="sidebar-brand-text mx-3">Stock Inventory</div>
+  <div class="sidebar-brand-text mx-3">Manajemen Stok</div>
 </a>
   
   <!-- Divider -->
@@ -23,7 +23,7 @@
     <li class="nav-item {{ request()->routeIs('users.*') ? 'active' : '' }}">
       <a class="nav-link" href="{{ route('users.index') }}">
         <i class="fas fa-fw fa-users"></i>
-        <span>User Management</span></a>
+        <span>Pengguna</span></a>
     </li>
     @endif
 
@@ -32,7 +32,7 @@
   <li class="nav-item {{ request()->routeIs('categories.*') ? 'active' : '' }}">
     <a class="nav-link" href="{{ route('categories.index') }}">
       <i class="fas fa-fw fa-th"></i>
-      <span>Categories</span></a>
+      <span>Kategori</span></a>
   </li>
   @endif
 
@@ -40,14 +40,14 @@
   <li class="nav-item {{ request()->routeIs('products.index') ? 'active' : '' }}">
     <a class="nav-link" href="{{ route('products.index') }}">
       <i class="fas fa-fw fa-box"></i>
-      <span>Products</span></a>
+      <span>Produk</span></a>
   </li>
   
   <!-- Nav Item - Suppliers -->
   <li class="nav-item {{ request()->routeIs('suppliers.*') ? 'active' : '' }}">
     <a class="nav-link" href="{{ route('suppliers.index') }}">
         <i class="fas fa-fw fa-truck"></i>
-        <span>Suppliers</span>
+        <span>Pemasok</span>
     </a>
   </li>
 
@@ -57,34 +57,34 @@
   
   <!-- Heading -->
   <div class="sidebar-heading">
-    Stock Management
+    Inventaris Stok
   </div>
   
   <!-- Nav Item - Stock Entry -->
   <li class="nav-item {{ request()->routeIs('stock.entry') ? 'active' : '' }}">
     <a class="nav-link" href="{{ route('stock.entry') }}">
       <i class="fas fa-fw fa-arrow-circle-right"></i>
-      <span>Stock Entry</span></a>
+      <span>Stok Masuk</span></a>
   </li>
   
   <!-- Nav Item - Stock Exit -->
   <li class="nav-item {{ request()->routeIs('stock.exit') ? 'active' : '' }}">
     <a class="nav-link" href="{{ route('stock.exit') }}">
       <i class="fas fa-fw fa-arrow-circle-left"></i>
-      <span>Stock Exit</span></a>
+      <span>Stok Keluar</span></a>
   </li>
 
    <!-- Nav Item - Stock History -->
 <li class="nav-item {{ request()->routeIs('stock.history*') ? 'active' : '' }}">
   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#stockHistoryCollapse" aria-expanded="true" aria-controls="stockHistoryCollapse">
       <i class="fas fa-fw fa-history"></i>
-      <span>Stock History</span>
+      <span>Riwayat Stok</span>
   </a>
   <div id="stockHistoryCollapse" class="collapse {{ request()->routeIs('stock.history*') ? 'show' : '' }}" aria-labelledby="headingStockHistory" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
-          <h6 class="collapse-header">Stock History Options:</h6>
-          <a class="collapse-item {{ request()->routeIs('stock.history.entry') ? 'active' : '' }}" href="{{ route('stock.history.entry') }}">Stock History Entry</a>
-          <a class="collapse-item {{ request()->routeIs('stock.history.exit') ? 'active' : '' }}" href="{{ route('stock.history.exit') }}">Stock History Exit</a>
+          <h6 class="collapse-header">Pilihan Riwayat Stok:</h6>
+          <a class="collapse-item {{ request()->routeIs('stock.history.entry') ? 'active' : '' }}" href="{{ route('stock.history.entry') }}">Riwayat Stok Masuk</a>
+          <a class="collapse-item {{ request()->routeIs('stock.history.exit') ? 'active' : '' }}" href="{{ route('stock.history.exit') }}">Riwayat Stok Keluar</a>
       </div>
   </div>
 </li>
@@ -94,7 +94,7 @@
   <li class="nav-item {{ request()->routeIs('stock.summary') ? 'active' : '' }}">
     <a class="nav-link" href="{{ route('stock.summary') }}">
       <i class="fas fa-fw fa-list-alt"></i>
-      <span>Stock Summary</span></a>
+      <span>Ringkasan Stok</span></a>
   </li>
   
   <!-- Divider -->

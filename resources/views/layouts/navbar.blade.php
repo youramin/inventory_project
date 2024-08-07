@@ -22,12 +22,12 @@
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="/profile">
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Profile
+                    Profil
                 </a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" id="logoutButton">
                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Logout
+                    Keluar
                 </a>
                 <form id="logout-form" action="{{ route('logout') }}" method="GET" style="display: none;">
                     @csrf
@@ -48,13 +48,13 @@
     document.getElementById('logoutButton').addEventListener('click', function(event) {
         event.preventDefault();
         Swal.fire({
-            title: 'Are you sure?',
-            text: "You will be logged out!",
+            title: 'Anda yakin?',
+            text: "Anda Akan Keluar Dari Akun",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Yes, log out!'
+            confirmButtonText: 'Ya, Keluar Akun '
         }).then((result) => {
             if (result.isConfirmed) {
                 document.getElementById('logout-form').submit();
