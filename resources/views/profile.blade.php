@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
-@section('title', 'Profile')
+@section('title', 'Profil')
 
 @section('contents')
-<h1 class="mb-0">Profile</h1>
+<h1 class="mb-0">Profil</h1>
 <hr />
 
 
@@ -13,12 +13,12 @@
         <div class="col-md-12 border-right">
             <div class="p-3 py-5">
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h4 class="text-right">Profile Settings</h4>
+                    <h4 class="text-right">Pengaturan Profil</h4>
                 </div>
                 <div class="row" id="res"></div>
                 <div class="row mt-2">
                     <div class="col-md-6">
-                        <label class="labels">Name</label>
+                        <label class="labels">Nama</label>
                         <input type="text" name="name" class="form-control" placeholder="first name" value="{{ auth()->user()->name }}">
                     </div>
                     <div class="col-md-6">
@@ -27,7 +27,7 @@
                     </div>
                 </div>
                 <div class="mt-5 text-center">
-                    <button id="btn" class="btn btn-primary profile-button" type="button">Save Profile</button>
+                    <button id="btn" class="btn btn-primary profile-button" type="button">Simpan Profil</button>
                 </div>
             </div>
         </div>
@@ -40,12 +40,12 @@
         event.preventDefault(); // Prevent the default button behavior
 
         Swal.fire({
-            title: 'Are you sure?',
-            text: "Do you want to save the changes?",
+            title: 'Apa anda yakin?',
+            text: "Ingin Menyimpan Perubahan?",
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonText: 'Yes, save it!',
-            cancelButtonText: 'No, cancel!'
+            confirmButtonText: 'Ya, Simpan',
+            cancelButtonText: 'Tidak, Batal'
         }).then((result) => {
             if (result.isConfirmed) {
                 // If confirmed, submit the form
@@ -58,7 +58,7 @@
     <script>
         Swal.fire({
             icon: 'success',
-            title: 'Success',
+            title: 'Sukses',
             text: '{{ Session::get('success') }}',
             showConfirmButton: false,
             timer: 2000

@@ -30,7 +30,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Stock Entry
+                                Stok Masuk
                             </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $totalStockEntry }}</div>
                         </div>
@@ -48,7 +48,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Stock Exit
+                                Stok Keluar
                             </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $totalStockExit }}</div>
                         </div>
@@ -66,7 +66,7 @@
                     <div class="row no-gutters align-items-center">
                         <div class="col mr-2">
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Current Stock
+                                Stok Tersisa
                             </div>
                             <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $currentStock }}</div>
                         </div>
@@ -106,7 +106,7 @@
             <div class="card shadow mb-4">
                 <div
                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Grafik Stock Masuk & Keluar</h6>
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
@@ -133,7 +133,7 @@
     <script>
         Swal.fire({
             icon: 'success',
-            title: 'Success',
+            title: 'Sukses',
             text: '{{ Session::get('success') }}',
             showConfirmButton: false,
             timer: 2000
@@ -147,7 +147,7 @@
         var myPieChart = new Chart(ctx, {
             type: 'pie',
             data: {
-                labels: ['Stock Entry', 'Stock Exit'],
+                labels: ['Stok Masuk', 'Stok Keluar'],
                 datasets: [{
                     data: [{{ $totalStockEntry }}, {{ $totalStockExit }}],
                     backgroundColor: ['#4e73df', '#e74a3b'],
