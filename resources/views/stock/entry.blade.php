@@ -25,7 +25,6 @@
                 <label class="form-label">Produk</label>
                 <select name="product_id" class="form-control" id="productSelect">
                     <option value="">Pilih Produk</option>
-                    <!-- Options will be loaded dynamically -->
                 </select>
                 @error('product_id')
                     <div class="text-danger">{{ $message }}</div>
@@ -40,6 +39,14 @@
                     @endforeach
                 </select>
                 @error('supplier_id')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+            </div>
+            <p style="color: red">Masukkan Harga Satuan Tanpa Simbol Tambahan (titik/koma)</p>
+            <div class="mb-3">
+                <label class="form-label">Harga Satuan</label>
+                <input type="number" name="unit_price" class="form-control" placeholder="Harga Satuan" value="{{ old('unit_price') }}" >
+                @error('unit_price')
                     <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
@@ -83,7 +90,7 @@
                 const categoryId = categorySelect.value;
 
                 // Clear previous product options
-                productSelect.innerHTML = '<option value="">Select Product</option>';
+                productSelect.innerHTML = '<option value="">Pilih Produk</option>';
 
                 if (categoryId) {
                     // Fetch products based on the selected category

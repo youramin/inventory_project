@@ -16,7 +16,9 @@ class StockEntry extends Model
         'category_id',
         'entry_date',
         'user_id',
-        'supplier_id'
+        'supplier_id',
+        'unit_price',
+        'total_price'
     ];
 
     protected $table = 'stock_entries';

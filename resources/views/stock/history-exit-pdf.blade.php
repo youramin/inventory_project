@@ -73,31 +73,32 @@
         <thead>
             <tr>
                 <th>No.</th>
-                <th>Date</th>
-                <th>Product</th>
-                <th>Category</th>
-                <th>Quantity</th>
-                <th>Notes</th>
-                <th>User</th>
+                <th>Waktu</th>
+                <th>Produk</th>
+                <th>Kategori</th>
+                <th>Jumlah Stok</th>
+                <th>Penanggung Jawab</th>
+                <th>Keterangan</th>
+                <th>Pengguna Input</th>
             </tr>
         </thead>
         <tbody>
-            @foreach($exits as $exit)
+            @forelse($exits as $index => $exit)
                 <tr>
                     <td>{{ $index + 1 }}</td>
-                    <td>{{ \Carbon\Carbon::parse($entry->entry_date)->format('d-m-Y') }}</td>
+                    <td>{{ \Carbon\Carbon::parse($exit->exit_date)->format('d-m-Y') }}</td>
                     <td>{{ $exit->product->title }}</td>
-                    <td>{{ $exit->product->category ? $exit->product->category->name : 'Category not found' }}</td>
+                    <td>{{ $exit->product->category ? $exit->product->category->name : 'Kategori Tidak Ditemukan' }}</td>
                     <td>-{{ $exit->quantity }}</td>
+                    <td>{{ $exit->person_taking_stock }}</td>
                     <td>{{ $exit->notes }}</td>
-                    <td>{{ $exit->user ? $exit->user->name : 'User not found' }}</td>
+                    <td>{{ $exit->user ? $exit->user->name : 'Pengguna Tidak Ditemukan' }}</td>
                 </tr>
-            @endforeach
-            @if($exits->isEmpty())
+            @empty
                 <tr>
-                    <td colspan="6">No stock history exits found.</td>
+                    <td colspan="8">Tidak ada riwayat stok</td>
                 </tr>
-            @endif
+            @endforelse
         </tbody>
     </table>
 </body>

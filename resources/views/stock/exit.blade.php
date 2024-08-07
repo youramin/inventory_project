@@ -39,6 +39,13 @@
                 @enderror
             </div>
             <div class="mb-3">
+                <label class="form-label">Penanggung Jawab</label>
+                <input type="text" name="person_taking_stock" class="form-control" placeholder="Nama Orang" value="{{ old('person_taking_stock') }}">
+                @error('person_taking_stock')
+                    <div class="text-danger">{{ $message }}</div>
+                @enderror
+            </div>            
+            <div class="mb-3">
                 <label class="form-label">Waktu Keluar</label>
                 <input type="date" name="exit_date" class="form-control" value="{{ old('exit_date') }}">
                 @error('exit_date')

@@ -54,6 +54,8 @@
                             <th>Produk</th>
                             <th>Kategori</th>
                             <th>Jumlah Stok</th>
+                            <th>Harga Satuan</th>
+                            <th>Harga Total</th>
                             <th>Pemasok</th>
                             <th>Keterangan</th>
                             <th>Pengguna Input</th>
@@ -65,15 +67,17 @@
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ \Carbon\Carbon::parse($entry->entry_date)->format('d-m-Y') }}</td>
                                 <td>{{ $entry->product->title }}</td>
-                                <td>{{ $entry->product->category ? $entry->product->category->name : 'Category not found' }}</td>
+                                <td>{{ $entry->product->category ? $entry->product->category->name : 'Kategori Tidak Ditemukan' }}</td>
                                 <td>+{{ $entry->quantity }}</td>
-                                <td>{{ $entry->supplier ? $entry->supplier->name : 'Supplier not found' }}</td>
+                                <td>{{ $entry->unit_price ? number_format($entry->unit_price, 2) : 'Harga Tidak Ditemukan' }}</td>
+                                <td>{{ $entry->total_price ? number_format($entry->total_price, 2) : 'Harga Tidak Ditemukan' }}</td>
+                                <td>{{ $entry->supplier ? $entry->supplier->name : 'Pemasok Tidak Ditemukan' }}</td>
                                 <td>{{ $entry->notes }}</td>
-                                <td>{{ $entry->user ? $entry->user->name : 'User not found' }}</td>
+                                <td>{{ $entry->user ? $entry->user->name : 'Pengguna Tidak Ditemukan' }}</td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="8">No stock history entries found.</td>
+                                <td colspan="10">Tidak ada riwayat stok</td>
                             </tr>
                         @endforelse
                     </tbody>

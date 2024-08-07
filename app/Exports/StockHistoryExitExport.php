@@ -33,12 +33,13 @@ class StockHistoryExitExport implements FromQuery, WithHeadings, WithMapping
     public function headings(): array
     {
         return [
-            'Date',
-            'Product',
-            'Category',
-            'Quantity',
-            'Notes',
-            'User',
+            'Waktu',
+            'Produk',
+            'Kategori',
+            'Jumlah Stok',
+            'Penanggung Jawab',
+            'Keterangan',
+            'Pengguna Input',
         ];
     }
 
@@ -49,6 +50,7 @@ class StockHistoryExitExport implements FromQuery, WithHeadings, WithMapping
             $exit->product->title,
             $exit->product->category ? $exit->product->category->name : 'Category not found',
             $exit->quantity,
+            $exit->person_taking_stock,
             $exit->notes,
             $exit->user ? $exit->user->name : 'User not found',
         ];

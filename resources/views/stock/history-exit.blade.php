@@ -55,6 +55,7 @@
                             <th>Produk</th>
                             <th>Kategori</th>
                             <th>Jumlah Stok</th>
+                            <th>Penanggung Jawab</th>
                             <th>Keterangan</th>
                             <th>Pengguna Input</th>
                         </tr>
@@ -65,14 +66,15 @@
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ \Carbon\Carbon::parse($exit->exit_date)->format('d-m-Y') }}</td>
                                 <td>{{ $exit->product->title }}</td>
-                                <td>{{ $exit->product->category ? $exit->product->category->name : 'Category not found' }}</td>
+                                <td>{{ $exit->product->category ? $exit->product->category->name : 'Kategori Tidak Ditemukan' }}</td>
                                 <td>-{{ $exit->quantity }}</td>
+                                <td>{{ $exit->person_taking_stock }}</td>
                                 <td>{{ $exit->notes }}</td>
-                                <td>{{ $exit->user ? $exit->user->name : 'User not found' }}</td>
+                                <td>{{ $exit->user ? $exit->user->name : 'Pengguna Tidak Ditemukan' }}</td>
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="7">No stock history exits found.</td>
+                                <td colspan="8">Tidak ada riwayat stok</td>
                             </tr>
                         @endforelse
                     </tbody>

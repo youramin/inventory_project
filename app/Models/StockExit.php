@@ -15,7 +15,8 @@ class StockExit extends Model
         'notes',
         'category_id',
         'exit_date',
-        'user_id'
+        'user_id',
+        'person_taking_stock'
     ];
 
     protected $table = 'stock_exits';

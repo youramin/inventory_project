@@ -35,9 +35,13 @@ class StockController extends Controller
             'entry_date' => 'required|date',
             'category_id' => 'nullable|exists:categories,id',
             'supplier_id' => 'nullable|exists:suppliers,id',
+            'unit_price' => 'nullable|numeric|min:0',
         ]);
 
         $product = Product::findOrFail($request->product_id);
+
+        $unitPrice = $request->unit_price ?? 0; // Default to 0 if not provided
+        $totalPrice = $unitPrice * $request->quantity;
 
         $stockEntry = StockEntry::create([
             'product_id' => $request->product_id,
@@ -47,6 +51,9 @@ class StockController extends Controller
             'entry_date' => $request->entry_date,
             'user_id' => auth()->id(),
             'supplier_id' => $request->supplier_id,
+            'unit_price' => $unitPrice,
+            'total_price' => $totalPrice,
+            
         ]);
 
         $product->stock_quantity += $request->quantity;
@@ -70,6 +77,7 @@ class StockController extends Controller
             'notes' => 'nullable|string',
             'exit_date' => 'required|date',
             'category_id' => 'nullable|exists:categories,id',
+            'person_taking_stock' => 'required|string|max:255',
         ]);
 
         $product = Product::findOrFail($request->product_id);
@@ -84,6 +92,7 @@ class StockController extends Controller
             'category_id' => $request->category_id,
             'exit_date' => $request->exit_date,
             'user_id' => auth()->id(),
+            'person_taking_stock' => $request->person_taking_stock,
         ]);
 
         $product->stock_quantity -= $request->quantity;
