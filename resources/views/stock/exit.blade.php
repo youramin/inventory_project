@@ -121,7 +121,7 @@
     <script>
         Swal.fire({
             icon: 'success',
-            title: 'Success',
+            title: 'Sukses',
             text: '{{ Session::get('success') }}',
             showConfirmButton: false,
             timer: 2000

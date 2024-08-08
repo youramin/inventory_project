@@ -54,7 +54,8 @@
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
-            confirmButtonText: 'Ya, Keluar Akun '
+            confirmButtonText: 'Ya, Keluar Akun ',
+            cancelButtonText : 'Tidak'
         }).then((result) => {
             if (result.isConfirmed) {
                 document.getElementById('logout-form').submit();
