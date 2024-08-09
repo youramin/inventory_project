@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -22,16 +23,23 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-
         $request->validate([
             'title' => 'required',
             'price' => 'required',
             'product_code' => 'required',
             'description' => 'required',
             'category_id' => 'required',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:51200',
         ]);
 
-        Product::create($request->all());
+        $data = $request->except('image');
+
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('images', 'public');
+            $data['image'] = $imagePath;
+        }
+
+        Product::create($data);
 
         return redirect()->route('products.index')->with('success', 'Product created successfully.');
     }
@@ -49,37 +57,49 @@ class ProductController extends Controller
 
     public function update(Request $request, $id)
     {
-        // Validasi data
         $validated = $request->validate([
             'title' => 'required|string|max:255',
             'price' => 'required|numeric',
             'product_code' => 'required|string|max:50',
             'description' => 'nullable|string',
             'category_id' => 'required|exists:categories,id',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:51200',
         ]);
 
-        // Temukan produk berdasarkan ID
-        $product = Product::findOrFail($id);
+        $product = Product::findOrFail($id); // Fetch the product by ID
 
-        // Perbarui produk
-        $product->update($validated);
+        $data = $request->except('image');
 
-        // Kirim pesan sukses
+        if ($request->hasFile('image')) {
+            // Delete the old image if it exists
+            if ($product->image && Storage::exists('public/' . $product->image)) {
+                Storage::delete('public/' . $product->image);
+            }
+
+            $imagePath = $request->file('image')->store('images', 'public');
+            $data['image'] = $imagePath;
+        }
+
+        // Update the product
+        $product->update($data);
+
         return redirect()->route('products.index')->with('success', 'Product updated successfully!');
     }
 
-
     public function destroy($id)
-{
-    $product = Product::find($id);
+    {
+        $product = Product::find($id);
 
-    if ($product) {
-        $product->delete();
-        return redirect()->route('products.index')->with('success', 'Product deleted successfully.');
+        if ($product) {
+            // Delete the product image if it exists
+            if ($product->image && Storage::exists('public/' . $product->image)) {
+                Storage::delete('public/' . $product->image);
+            }
+
+            $product->delete();
+            return redirect()->route('products.index')->with('success', 'Product deleted successfully.');
+        }
+
+        return redirect()->route('products.index')->with('error', 'Product not found.');
     }
-
-    return redirect()->route('products.index')->with('error', 'Product not found.');
-}
-
-
 }

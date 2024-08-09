@@ -10,7 +10,7 @@
             @csrf
             <div class="row mb-3">
                 <div class="col">
-                    <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" placeholder="Nama Kategori" value="{{ old('title') }}">
+                    <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" placeholder="Nama Produk" value="{{ old('title') }}">
                     @error('title')
                         <div class="invalid-feedback">
                             {{ $message }}
@@ -53,6 +53,15 @@
                     @endforeach
                 </select>
                 @error('category_id')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+            <div class="mb-3">
+                <label for="image" class="form-label">Gambar</label>
+                <input type="file" name="image" class="form-control @error('image') is-invalid @enderror" id="image">
+                @error('image')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>

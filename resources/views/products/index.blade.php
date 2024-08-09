@@ -24,6 +24,7 @@
                     <thead class="table-primary">
                         <tr>
                             <th>No.</th>
+                            <th>Gambar</th>
                             <th>Nama Produk</th>
                             <th>Kode Produk</th>
                             <th>Harga Satuan</th>
@@ -36,6 +37,13 @@
                         @forelse($products as $product)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
+                                <td>
+                                    @if($product->image)
+                                        <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->title }}" style="width: 100px; height: auto;">
+                                    @else
+                                        <span>No Image</span>
+                                    @endif
+                                </td>
                                 <td>{{ $product->title }}</td>
                                 <td>{{ $product->product_code }}</td>
                                 <td>{{ $product->price }}</td>
