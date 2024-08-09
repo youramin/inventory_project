@@ -95,7 +95,7 @@
                     <td>{{ \Carbon\Carbon::parse($exit->exit_date)->format('d-m-Y') }}</td>
                     <td>
                         @if($exit->product->image)
-                            <img src="{{ asset('storage/' . $exit->product->image) }}" alt="Product Image" style="max-width: 100px;">
+                            <img src="data:image/{{ pathinfo($exit->product->image, PATHINFO_EXTENSION) }};base64,{{ base64_encode(file_get_contents(storage_path('app/public/' . $entry->product->image))) }}" alt="Product Image">
                         @else
                             Tidak Ada Gambar
                         @endif
