@@ -52,6 +52,7 @@
                         <tr>
                             <th>No.</th>
                             <th>Waktu</th>
+                            <th>Gambar</th>
                             <th>Produk</th>
                             <th>Kategori</th>
                             <th>Jumlah Stok</th>
@@ -65,6 +66,13 @@
                             <tr>
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ \Carbon\Carbon::parse($exit->exit_date)->format('d-m-Y') }}</td>
+                                <td>
+                                    @if($exit->product->image)
+                                        <img src="{{ asset('storage/' . $exit->product->image) }}" alt="Product Image" style="max-width: 100px;">
+                                    @else
+                                        Tidak Ada Gambar
+                                    @endif
+                                </td>
                                 <td>{{ $exit->product->title }}</td>
                                 <td>{{ $exit->product->category ? $exit->product->category->name : 'Kategori Tidak Ditemukan' }}</td>
                                 <td>-{{ $exit->quantity }}</td>

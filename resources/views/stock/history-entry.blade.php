@@ -51,6 +51,7 @@
                         <tr>
                             <th>No.</th>
                             <th>Waktu</th>
+                            <th>Gambar</th>
                             <th>Produk</th>
                             <th>Kategori</th>
                             <th>Jumlah Stok</th>
@@ -66,6 +67,13 @@
                             <tr>
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ \Carbon\Carbon::parse($entry->entry_date)->format('d-m-Y') }}</td>
+                                <td>
+                                    @if($entry->product->image)
+                                        <img src="{{ asset('storage/' . $entry->product->image) }}" alt="Product Image" style="max-width: 100px;">
+                                    @else
+                                        Tidak Ada Gambar
+                                    @endif
+                                </td>
                                 <td>{{ $entry->product->title }}</td>
                                 <td>{{ $entry->product->category ? $entry->product->category->name : 'Kategori Tidak Ditemukan' }}</td>
                                 <td>+{{ $entry->quantity }}</td>
@@ -77,7 +85,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td colspan="10">Tidak ada riwayat stok</td>
+                                <td colspan="11">Tidak ada riwayat stok</td>
                             </tr>
                         @endforelse
                     </tbody>

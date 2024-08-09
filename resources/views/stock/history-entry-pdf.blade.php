@@ -53,6 +53,11 @@
         th {
             background-color: #f2f2f2;
         }
+        img {
+            max-width: 100px; /* Set maximum width for images */
+            max-height: 100px; /* Set maximum height for images */
+            object-fit: cover; /* Ensure the image scales nicely */
+        }
     </style>
 </head>
 <body>
@@ -75,6 +80,7 @@
             <tr>
                 <th>No.</th>
                 <th>Waktu</th>
+                <th>Gambar</th>
                 <th>Produk</th>
                 <th>Kategori</th>
                 <th>Jumlah Stok</th>
@@ -90,6 +96,13 @@
                 <tr>
                     <td>{{ $index + 1 }}</td>
                     <td>{{ \Carbon\Carbon::parse($entry->entry_date)->format('d-m-Y') }}</td>
+                    <td>
+                        @if($entry->product->image)
+                            <img src="data:image/{{ pathinfo($entry->product->image, PATHINFO_EXTENSION) }};base64,{{ base64_encode(file_get_contents(storage_path('app/public/' . $entry->product->image))) }}" alt="Product Image">
+                        @else
+                            Tidak Ada Gambar
+                        @endif
+                    </td>
                     <td>{{ $entry->product->title }}</td>
                     <td>{{ $entry->product->category ? $entry->product->category->name : 'Kategori Tidak Ditemukan' }}</td>
                     <td>+{{ $entry->quantity }}</td>
@@ -101,7 +114,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td colspan="10">Tidak ada riwayat stok</td>
+                    <td colspan="11">Tidak ada riwayat stok</td>
                 </tr>
             @endforelse
         </tbody>
