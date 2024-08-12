@@ -79,24 +79,15 @@
         </div>
     </div>
     <div class="row">
-        <!-- ilustrasi -->
+        <!-- Bar Chart -->
         <div class="col-xl-6 col-lg-5">
             <div class="card shadow mb-4">
-                <div>
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
-                    </div>
-                    <div class="card-body">
-                        <div class="text-center">
-                            <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 20rem;"
-                                src="admin_assets/img/11065.jpg" alt="...">
-                        </div>
-                        <p>Add some quality, svg illustrations to your project courtesy of <a
-                                target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a
-                            constantly updated collection of beautiful svg images that you can use
-                            completely free and without attribution!</p>
-                        <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on
-                            unDraw &rarr;</a>
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Bar Chart</h6>
+                </div>
+                <div class="card-body">
+                    <div class="chart-bar">
+                        <canvas id="myBarChart"></canvas>
                     </div>
                 </div>
             </div>
@@ -171,6 +162,52 @@
                     display: false
                 },
                 cutoutPercentage: 80,
+            },
+        });
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var ctxBar = document.getElementById('myBarChart').getContext('2d');
+        var myBarChart = new Chart(ctxBar, {
+            type: 'bar',
+            data: {
+                labels: @json($categoryNames), // Daftar kategori
+                datasets: [{
+                    label: 'Jumlah Stok',
+                    data: @json($productCounts), // Jumlah stok untuk setiap kategori
+                    backgroundColor: 'rgb(52, 101, 190)', // Warna solid
+                    borderColor: 'rgb(52, 101, 190)', // Warna border
+                    borderWidth: 1
+                }],
+            },
+            options: {
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        beginAtZero: true
+                    },
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return value; // Menampilkan angka bulat
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                            label: function(tooltipItem) {
+                                return 'Jumlah: ' + tooltipItem.raw; // Menampilkan angka bulat pada tooltip
+                            }
+                        }
+                    }
+                }
             },
         });
     });
