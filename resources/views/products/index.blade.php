@@ -27,9 +27,9 @@
                             <th>Gambar</th>
                             <th>Nama Produk</th>
                             <th>Kode Produk</th>
+                            <th>Kategori</th>
                             <th>Harga Satuan</th>
                             <th>Katerangan</th>
-                            <th>Kategori</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -46,9 +46,9 @@
                                 </td>
                                 <td>{{ $product->title }}</td>
                                 <td>{{ $product->product_code }}</td>
+                                <td>{{ $product->category->category_code }}</td>
                                 <td>{{ $product->price }}</td>
                                 <td>{{ $product->description }}</td>
-                                <td>{{ $product->category->name }}</td> <!-- Assuming 'name' is the attribute in Category model -->
                                 <td>
                                     <a href="{{ route('products.edit', $product->id) }}" class="btn btn-warning btn-icon-split">
                                         <span class="icon text-white-50">
