@@ -80,7 +80,7 @@
     </div>
     <div class="row">
         <!-- Bar Chart -->
-        <div class="col-xl-6 col-lg-5">
+        <div class="col-xl-7 col-lg-5">
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Bar Chart</h6>
@@ -93,7 +93,7 @@
             </div>
         </div>
         <!-- Pie Chart -->
-        <div class="col-xl-6 col-lg-5">
+        <div class="col-xl-5 col-lg-5">
             <div class="card shadow mb-4">
                 <div
                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">

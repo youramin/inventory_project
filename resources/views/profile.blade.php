@@ -3,7 +3,6 @@
 @section('title', 'Profil')
 
 @section('contents')
-<h1 class="mb-0">Profil</h1>
 <hr />
 
 

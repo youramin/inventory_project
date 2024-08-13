@@ -22,7 +22,7 @@
             padding: 5px;
         }
         .logo {
-            max-width: 100px; /* Adjust the size of the logo */
+            max-width: 100px; 
         }
         .address {
             font-size: 12px;
@@ -46,16 +46,16 @@
             margin-top: 20px;
         }
         table.data-table, th, td {
-            border: 1px solid black; /* Border for data table and cells */
+            border: 1px solid black; 
             padding: 8px;
         }
         th {
             background-color: #f2f2f2;
         }
         img {
-            max-width: 100px; /* Set maximum width for images */
-            max-height: 100px; /* Set maximum height for images */
-            object-fit: cover; /* Ensure the image scales nicely */
+            max-width: 100px; 
+            max-height: 100px; 
+            object-fit: cover; 
         }
     </style>
 </head>
