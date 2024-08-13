@@ -101,7 +101,7 @@
                         @endif
                     </td>
                     <td>{{ $exit->product->title }}</td>
-                    <td>{{ $exit->product->category ? $exit->product->category->name : 'Kategori Tidak Ditemukan' }}</td>
+                    <td>{{ $exit->product->category ? $exit->product->category->category_code : 'Kategori Tidak Ditemukan' }}</td>
                     <td>-{{ $exit->quantity }}</td>
                     <td>{{ $exit->person_taking_stock }}</td>
                     <td>{{ $exit->notes }}</td>

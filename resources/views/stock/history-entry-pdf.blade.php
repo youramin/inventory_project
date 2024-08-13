@@ -104,7 +104,7 @@
                         @endif
                     </td>
                     <td>{{ $entry->product->title }}</td>
-                    <td>{{ $entry->product->category ? $entry->product->category->name : 'Kategori Tidak Ditemukan' }}</td>
+                    <td>{{ $entry->product->category ? $entry->product->category->category_code : 'Kategori Tidak Ditemukan' }}</td>
                     <td>+{{ $entry->quantity }}</td>
                     <td>{{ $entry->unit_price ? number_format($entry->unit_price, 2) : 'Harga Tidak Ditemukan' }}</td>
                     <td>{{ $entry->total_price ? number_format($entry->total_price, 2) : 'Harga Tidak Ditemukan' }}</td>
