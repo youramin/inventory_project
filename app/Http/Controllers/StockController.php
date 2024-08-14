@@ -10,11 +10,11 @@ use App\Models\Supplier;
 use Illuminate\Http\Request;
 use Dompdf\Dompdf;
 use Dompdf\Options;
-use Barryvdh\DomPDF\Facade\Pdf;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Exports\StockHistoryExport;
 use App\Exports\StockHistoryEntryExport;
 use App\Exports\StockHistoryExitExport;
+
 
 class StockController extends Controller
 {
