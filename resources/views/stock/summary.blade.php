@@ -25,7 +25,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($products as $product)
+                        @forelse($products as $product)
                             <tr>
                                 <td>{{ $product->title }}</td>
                                 <td>{{ $product->category->name }}</td>
@@ -40,7 +40,7 @@
                                     @endif
                                 </td>
                             </tr>
-                            @empty
+                        @empty
                             <tr>
                                 <td colspan="6" class="text-center">Tidak ada data produk</td>
                             </tr>
