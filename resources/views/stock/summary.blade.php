@@ -40,7 +40,11 @@
                                     @endif
                                 </td>
                             </tr>
-                        @endforeach
+                            @empty
+                            <tr>
+                                <td colspan="6" class="text-center">Tidak ada data produk</td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>
