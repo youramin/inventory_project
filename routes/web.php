@@ -33,8 +33,8 @@ Route::middleware('auth')->group(function () {
     Route::get('stock/exit', [StockController::class, 'exit'])->name('stock.exit');
     Route::post('stock/storeExit', [StockController::class, 'storeExit'])->name('stock.storeExit');
 
-    Route::get('stock/history/entry', [StockController::class, 'historyEntry'])->name('stock.history.entry');
-    Route::get('stock/history/exit', [StockController::class, 'historyExit'])->name('stock.history.exit');
+    Route::get('stock/history/entry', [StockController::class, 'indexHistoryEntry'])->name('stock.history.entry');
+    Route::get('stock/history/exit', [StockController::class, 'indexHistoryExit'])->name('stock.history.exit');
 
 
     Route::get('stock', [StockController::class, 'stock'])->name('stock.stock');
@@ -42,6 +42,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/stock/history', [StockController::class, 'history'])->name('stock.history');
     Route::get('/filterHistory', [StockController::class, 'filterHistory'])->name('filterHistory');
 
+    // Export routes
+    Route::get('/generate-pdf', [StockController::class, 'generatePDF'])->name('generate.pdf');
+    Route::get('/export-excel', [StockController::class, 'exportExcel'])->name('export.excel');
+    
     // Products routes
     Route::get('products', [ProductController::class, 'index'])->name('products.index');
     Route::get('products/create', [ProductController::class, 'create'])->name('products.create');
@@ -85,9 +89,6 @@ Route::middleware([CheckAdmin::class])->prefix('admin')->group(function () {
 
 });
 
-// Export routes
-Route::get('/generate-pdf', [StockController::class, 'generatePDF'])->name('generate.pdf');
-Route::get('/export-excel', [StockController::class, 'exportExcel'])->name('export.excel');
 
 // routes/web.php
 Route::get('/products-by-category/{categoryId}', [StockController::class, 'getProductsByCategory']);

@@ -40,6 +40,8 @@ class StockController extends Controller
 
         $product = Product::findOrFail($request->product_id);
 
+        $userId = $request->user()->id;
+
         $unitPrice = $request->unit_price ?? 0; // Default to 0 if not provided
         $totalPrice = $unitPrice * $request->quantity;
 
@@ -49,7 +51,7 @@ class StockController extends Controller
             'notes' => $request->notes,
             'category_id' => $request->category_id,
             'entry_date' => $request->entry_date,
-            'user_id' => auth()->id(),
+            'user_id' => $userId,
             'supplier_id' => $request->supplier_id,
             'unit_price' => $unitPrice,
             'total_price' => $totalPrice,
@@ -80,6 +82,7 @@ class StockController extends Controller
             'person_taking_stock' => 'required|string|max:255',
         ]);
 
+        $userId = $request->user()->id;
         $product = Product::findOrFail($request->product_id);
         if ($product->stock_quantity < $request->quantity) {
             return redirect()->back()->with('error', 'Insufficient stock available.');
@@ -91,7 +94,7 @@ class StockController extends Controller
             'notes' => $request->notes,
             'category_id' => $request->category_id,
             'exit_date' => $request->exit_date,
-            'user_id' => auth()->id(),
+            'user_id' => $userId,
             'person_taking_stock' => $request->person_taking_stock,
         ]);
 
@@ -113,6 +116,7 @@ class StockController extends Controller
         return view('stock.stock', compact('products'));
     }
 
+    
     public function summary()
     {
         $products = Product::with('category')
