@@ -4,6 +4,7 @@
 
 @section('contents')
 <div class="container-fluid">
+    <hr>
     <!-- Filter Form -->
     <form method="GET" action="{{ route('stock.history.entry') }}">
         <div class="row mb-3">
