@@ -4,6 +4,7 @@ namespace App\Models;
  
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
  
 class Product extends Model
 {
@@ -30,13 +31,26 @@ class Product extends Model
 
     public function getCurrentStockAttribute()
     {
-        return ($this->stock_entries_sum_quantity ?? 0) - ($this->stock_exits_sum_quantity ?? 0);
+        return ($this->stockEntries()->sum('quantity') ?? 0) - ($this->stockExits()->sum('quantity') ?? 0);
     }
 
     public function getLatestStockUpdateAttribute()
     {
-        return $this->attributes['latest_stock_update'] ?? null;
+        $latestEntry = $this->stockEntries()->orderBy('entry_date', 'desc')->first();
+        $latestExit = $this->stockExits()->orderBy('exit_date', 'desc')->first();
+        $latestDate = null;
+
+        if ($latestEntry && $latestExit) {
+            $latestDate = $latestEntry->entry_date > $latestExit->exit_date ? $latestEntry->entry_date : $latestExit->exit_date;
+        } elseif ($latestEntry) {
+            $latestDate = $latestEntry->entry_date;
+        } elseif ($latestExit) {
+            $latestDate = $latestExit->exit_date;
+        }
+
+        return $latestDate ? Carbon::parse($latestDate) : null;
     }
+
    
     // Accessor for total_entries
     public function getTotalEntriesAttribute()

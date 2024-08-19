@@ -124,28 +124,6 @@ class StockController extends Controller
             ->withSum('stockExits', 'quantity')
             ->get();
 
-        $products = $products->map(function ($product) {
-            $latestEntry = $product->stockEntries()->orderBy('entry_date', 'desc')->first();
-            $latestExit = $product->stockExits()->orderBy('exit_date', 'desc')->first();
-            $latestDate = null;
-
-            if ($latestEntry && $latestExit) {
-                $latestDate = $latestEntry->entry_date > $latestExit->exit_date ? $latestEntry->entry_date : $latestExit->exit_date;
-            } elseif ($latestEntry) {
-                $latestDate = $latestEntry->entry_date;
-            } elseif ($latestExit) {
-                $latestDate = $latestExit->exit_date;
-            }
-
-            // Set latest stock update as a Carbon instance
-            $product->latest_stock_update = $latestDate ? \Carbon\Carbon::parse($latestDate) : null;
-
-            // Calculate current stock
-            $product->current_stock = ($product->stock_entries_sum_quantity ?? 0) - ($product->stock_exits_sum_quantity ?? 0);
-
-            return $product;
-        });
-
         return view('stock.summary', compact('products'));
     }
 
