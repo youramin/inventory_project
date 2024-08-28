@@ -195,13 +195,13 @@ class StockController extends Controller
         $pdf->setPaper('A4', 'landscape');
         $pdf->render();
 
-        return $pdf->stream('stock_history_entry.pdf');
+        return $pdf->stream('Riwayat_stok_masuk.pdf');
     }
 
     // Download Excel for Stock History Entry
     public function downloadHistoryEntryExcel(Request $request)
     {
-        return Excel::download(new StockHistoryEntryExport($request->all()), 'stock_history_entry.xlsx');
+        return Excel::download(new StockHistoryEntryExport($request->all()), 'Riwayat_stok_masuk.xlsx');
     }
 
     // Download PDF for Stock History Exit
@@ -232,13 +232,13 @@ class StockController extends Controller
         $pdf->setPaper('A4', 'landscape');
         $pdf->render();
 
-        return $pdf->stream('stock_history_exit.pdf');
+        return $pdf->stream('Riwayat_stok_keluar.pdf');
     }
 
     // Download Excel for Stock History Exit
     public function downloadHistoryExitExcel(Request $request)
     {
-        return Excel::download(new StockHistoryExitExport($request->all()), 'stock_history_exit.xlsx');
+        return Excel::download(new StockHistoryExitExport($request->all()), 'Riwayat_stok_keluar.xlsx');
     }
 
 

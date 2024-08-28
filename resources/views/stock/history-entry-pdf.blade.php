@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Stock History Entry</title>
+    <title>Riwayat Stok Masuk</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -73,7 +73,7 @@
         </tr>
     </table>
     
-    <div class="title">Stock History Entry</div>
+    <div class="title">Riwayat Stok Masuk</div>
     
     <table class="data-table">
         <thead>

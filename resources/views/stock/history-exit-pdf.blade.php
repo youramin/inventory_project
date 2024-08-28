@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Stock History Exit</title>
+    <title>Riwayat Stok Keluar</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -72,7 +72,7 @@
         </tr>
     </table>
     
-    <div class="title">Stock History Exit</div>
+    <div class="title">Riwayat Stok Keluar</div>
 
     <table class="data-table">
         <thead>
