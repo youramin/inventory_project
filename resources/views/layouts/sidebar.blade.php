@@ -40,14 +40,14 @@
   <li class="nav-item {{ request()->routeIs('products.index') ? 'active' : '' }}">
     <a class="nav-link" href="{{ route('products.index') }}">
       <i class="fas fa-fw fa-box"></i>
-      <span>Produk</span></a>
+      <span>Barang</span></a>
   </li>
   
   <!-- Nav Item - Suppliers -->
   <li class="nav-item {{ request()->routeIs('suppliers.*') ? 'active' : '' }}">
     <a class="nav-link" href="{{ route('suppliers.index') }}">
         <i class="fas fa-fw fa-truck"></i>
-        <span>Pemasok</span>
+        <span>Master Supplier</span>
     </a>
   </li>
 
